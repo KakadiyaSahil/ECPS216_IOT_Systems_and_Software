@@ -1,0 +1,894 @@
+[
+    {
+        "id": "164728d22bb9d6f8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c7d9390cbaacb177",
+        "type": "http in",
+        "z": "164728d22bb9d6f8",
+        "name": "",
+        "url": "/master_cumulative_times",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 250,
+        "y": 200,
+        "wires": [
+            [
+                "751c358c5d0410e5",
+                "4eb161042c7f5981"
+            ]
+        ]
+    },
+    {
+        "id": "751c358c5d0410e5",
+        "type": "http response",
+        "z": "164728d22bb9d6f8",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 240,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "db6143a17e36a3e8",
+        "type": "ui_chart",
+        "z": "164728d22bb9d6f8",
+        "name": "",
+        "group": "8dcee5428904c9ce",
+        "order": 3,
+        "width": 14,
+        "height": 9,
+        "label": "Master devices UP time ",
+        "chartType": "bar",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "200",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#ff0000",
+            "#00ff00",
+            "#0000ff",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 970,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d690c973f1846b9b",
+        "type": "function",
+        "z": "164728d22bb9d6f8",
+        "name": "get the log files",
+        "func": "// // Example dynamic list generation\n// let files = [\n//     \"/home/sahilkakadiya/my_logs/log.txt\",\n//     \"/home/sahilkakadiya/Desktop/ECPS 216 - F'24 IOT/Assiginment -5 /Light Swarm  The Plot Thickens/my_logs/log_2024-12-05_21-54-34.txt\",\n//     \"log_3.txt\",\n//     \"log_4.txt\"\n// ];\n\n// // Map the filenames to Dropdown options\n// msg.options = files\n\n// // Send these options to populate the Dropdown node\n// return msg;\n\n\n\n// Log the incoming payload for debugging\n// node.warn(\"Incoming Payload: \" + JSON.stringify(msg.payload));\n\ntry {\n    let filePaths = []; // Initialize an array to store the file paths\n\n    // Iterate through the payload array using a for loop\n    for (let i = 0; i < msg.payload.length; i++) {\n        // Extract the 'name' field from the current object\n        let filePath = msg.payload[i].name;\n\n        // Add the extracted file path to the filePaths array\n        filePaths.push(filePath);\n    }\n\n    // Log the extracted file paths for debugging\n    // node.warn(\"Extracted File Paths: \" + JSON.stringify(filePaths));\n\n    // Update the message payload with the extracted file paths\n    msg.options = filePaths;\n\n    // Return the updated message to send it to the next node\n    return msg;\n\n} catch (error) {\n    // Log an error if something goes wrong\n    node.error(\"Error extracting file paths: \" + error);\n    return null; // Stop processing in case of an error\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 480,
+        "wires": [
+            [
+                "a2729d73e18e3dbd"
+            ]
+        ]
+    },
+    {
+        "id": "9ba860db9c37a4c8",
+        "type": "http in",
+        "z": "164728d22bb9d6f8",
+        "name": "",
+        "url": "/Last_Log_Entry",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 260,
+        "y": 80,
+        "wires": [
+            [
+                "74e9dd0c73ec2bb2",
+                "38de86a47df53a7e"
+            ]
+        ]
+    },
+    {
+        "id": "74e9dd0c73ec2bb2",
+        "type": "http response",
+        "z": "164728d22bb9d6f8",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 260,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "a2729d73e18e3dbd",
+        "type": "ui_dropdown",
+        "z": "164728d22bb9d6f8",
+        "name": "",
+        "label": "Logfile",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "8dcee5428904c9ce",
+        "order": 24,
+        "width": 29,
+        "height": 2,
+        "passthru": true,
+        "multiple": false,
+        "options": [],
+        "payload": "",
+        "topic": "msg.payload",
+        "topicType": "msg",
+        "className": "",
+        "x": 210,
+        "y": 680,
+        "wires": [
+            [
+                "3b933b8d910dfd28"
+            ]
+        ]
+    },
+    {
+        "id": "81f0bdf349558c9e",
+        "type": "file in",
+        "z": "164728d22bb9d6f8",
+        "name": "",
+        "filename": "payload",
+        "filenameType": "msg",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 580,
+        "y": 680,
+        "wires": [
+            [
+                "4071d212a1cc62a4"
+            ]
+        ]
+    },
+    {
+        "id": "78cb293fa9cfdbb4",
+        "type": "ui_chart",
+        "z": "164728d22bb9d6f8",
+        "name": "",
+        "group": "8dcee5428904c9ce",
+        "order": 1,
+        "width": 13,
+        "height": 9,
+        "label": "LDR value logging",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "cubic",
+        "nodata": "",
+        "dot": true,
+        "ymin": "0",
+        "ymax": "1024",
+        "removeOlder": "30",
+        "removeOlderPoints": "30",
+        "removeOlderUnit": "1",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#ff0000",
+            "#00ff00",
+            "#0000ff",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 970,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "38de86a47df53a7e",
+        "type": "function",
+        "z": "164728d22bb9d6f8",
+        "name": "log node data",
+        "func": "// Log incoming payload for debugging\n// node.warn(\"Incoming Payload: \" + JSON.stringify(msg.payload));\n\ntry {\n\n    let  log_entry_no =  msg.payload.log_entry_no;\n    let  timestamp =  msg.payload.timestamp;\n    let master_device = msg.payload.master_device;\n    let ip_address = msg.payload.ip_address;\n    let  color =  msg.payload.color;\n    let  ldr_value = msg.payload.ldr_value;\n\n    // Send extracted values as payload\n    // Send extracted ldr_value and color data together\n    \n    msg.topic = master_device;\n    msg.payload = ldr_value;\n    return msg; // Send the payload\n    \n\n} catch (error) {\n    node.error(\"Error extracting payload: \" + error);\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 80,
+        "wires": [
+            [
+                "78cb293fa9cfdbb4"
+            ]
+        ]
+    },
+    {
+        "id": "4149186be76dfe2c",
+        "type": "ui_chart",
+        "z": "164728d22bb9d6f8",
+        "name": "",
+        "group": "8dcee5428904c9ce",
+        "order": 31,
+        "width": 13,
+        "height": 8,
+        "label": "Log's file  Device Up Time Data",
+        "chartType": "bar",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "1000",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#ff0000",
+            "#00ff00",
+            "#0000ff",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1390,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4071d212a1cc62a4",
+        "type": "function",
+        "z": "164728d22bb9d6f8",
+        "name": "operation on file data",
+        "func": "// let inputData = msg.payload; // Assuming the input data is a string\n\n// // Initialize result containers\n// let cumulativeTimes = [];\n// let logEntries = [];\n\n// // Regex patterns\n// let masterRegex = /Master Device:\\s*(\\w+),\\s*IP-Address\\s*:\\s*([\\d.]+),\\s*Color:\\s*(\\w+),\\s*Cumulative Time:\\s*([\\d.]+)\\s*seconds/;\n// let logRegex = /{.*?}/g;\n\n// // Extract cumulative times\n// let masterMatches = inputData.match(new RegExp(masterRegex, \"g\"));\n// if (masterMatches) {\n//     masterMatches.forEach((entry) => {\n//         let match = entry.match(masterRegex);\n//         if (match) {\n//             cumulativeTimes.push({\n//                 master_device: match[1],\n//                 ip_address: match[2],\n//                 color: match[3],\n//                 cumulative_time: parseFloat(match[4])\n//             });\n//         }\n//     });\n// }\n\n// // Extract log entries\n// let logMatches = inputData.match(logRegex);\n// if (logMatches) {\n//     logMatches.forEach((log) => {\n//         try {\n//             logEntries.push(JSON.parse(log.replace(/'/g, '\"'))); // Convert to JSON\n//         } catch (error) {\n//             node.warn(\"Error parsing log entry: \" + log);\n//         }\n//     });\n// }\n\n// // Set outputs\n// msg.payload = {\n//     cumulative_times: cumulativeTimes,\n//     log_entries: logEntries\n// };\n\n// let secondOutputMsg = { payload: logEntries };\n// return [msg, secondOutputMsg];\n\n// let inputData = msg.payload; // Assuming the input data is a string\n\n// // Initialize result containers\n// let cumulativeTimes = [];\n// let logEntries = [];\n\n// // Regex patterns\n// let masterRegex = /Master Device:\\s*(\\w+),\\s*IP-Address\\s*:\\s*([\\d.]+),\\s*Color:\\s*(\\w+),\\s*Cumulative Time:\\s*([\\d.]+)\\s*seconds/;\n// let logRegex = /{.*?}/g;\n\n// // Extract cumulative times\n// let masterMatches = inputData.match(new RegExp(masterRegex, \"g\"));\n// if (masterMatches) {\n//     masterMatches.forEach((entry) => {\n//         let match = entry.match(masterRegex);\n//         if (match) {\n//             cumulativeTimes.push({\n//                 master_device: match[1],\n//                 ip_address: match[2],\n//                 color: match[3],\n//                 cumulative_time: parseFloat(match[4])\n//             });\n//         }\n//     });\n// }\n\n// // Extract log entries\n// let logMatches = inputData.match(logRegex);\n// if (logMatches) {\n//     logMatches.forEach((log) => {\n//         try {\n//             logEntries.push(JSON.parse(log.replace(/'/g, '\"'))); // Convert to JSON\n//         } catch (error) {\n//             node.warn(\"Error parsing log entry: \" + log);\n//         }\n//     });\n// }\n\n// // Set outputs\n// let secondOutputMsg = { payload: logEntries };\n// return [{ cumulative_times: cumulativeTimes }, secondOutputMsg ];\n\n\n\n\nlet inputData = msg.payload; // Assuming the input data is a string\n\n// Initialize result containers\nlet cumulativeTimes = [];\nlet logEntries = [];\n\n// Regex patterns\nlet masterRegex = /Master Device:\\s*(\\w+),\\s*IP-Address\\s*:\\s*([\\d.]+),\\s*Color:\\s*(\\w+),\\s*Cumulative Time:\\s*([\\d.]+)\\s*seconds/;\nlet logRegex = /{.*?}/g;\n\n// Extract cumulative times\nlet masterMatches = inputData.match(new RegExp(masterRegex, \"g\"));\nif (masterMatches) {\n    masterMatches.forEach((entry) => {\n        let match = entry.match(masterRegex);\n        if (match) {\n            cumulativeTimes.push({\n                master_device: match[1],\n                ip_address: match[2],\n                color: match[3],\n                cumulative_time: parseFloat(match[4])\n            });\n        }\n    });\n}\n\n// Extract log entries\nlet logMatches = inputData.match(logRegex);\nif (logMatches) {\n    logMatches.forEach((log) => {\n        try {\n            logEntries.push(JSON.parse(log.replace(/'/g, '\"'))); // Convert to JSON\n        } catch (error) {\n            node.warn(\"Error parsing log entry: \" + log);\n        }\n    });\n}\n\n// Set outputs\nreturn [\n    { payload: cumulativeTimes }, // First output with cumulativeTimes\n    { payload: logEntries }      // Second output with logEntries\n];",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 680,
+        "wires": [
+            [
+                "029de861f6ec49df"
+            ],
+            [
+                "e09b7d2ac391b8b8"
+            ]
+        ]
+    },
+    {
+        "id": "4eb161042c7f5981",
+        "type": "function",
+        "z": "164728d22bb9d6f8",
+        "name": "Sperator Each Master Data",
+        "func": "// Log incoming payload to verify structure\n// node.warn(\"Incoming Payload: \" + JSON.stringify(msg.payload));\n\nlet index = 0; // Index to track sequential sending through payload array\n\nfunction sendNext() {\n    try {\n        if (index < msg.payload.length) {\n            // Process one payload at a time\n            let newMsg = {\n                topic: msg.payload[index][\"Device ID\"], // Set topic to Device ID\n                payload: msg.payload[index][\"Up Time\"], // Set payload to Up Time\n                color: msg.payload[index][\"color\"] // Send the color too\n            };\n\n            node.send(newMsg); // Send the payload\n            index++;\n\n            // Wait for a short delay before processing the next item\n            setTimeout(sendNext, 100);\n        } else {\n            // node.warn(\"All messages sent.\");\n        }\n    } catch (error) {\n        node.error(\"Error during processing: \" + error);\n    }\n}\n\n// Start the sequential sending process\nsendNext();",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 200,
+        "wires": [
+            [
+                "db6143a17e36a3e8"
+            ]
+        ]
+    },
+    {
+        "id": "bbfce18c72ecebf3",
+        "type": "function",
+        "z": "164728d22bb9d6f8",
+        "name": "Reset the charts",
+        "func": "if(msg.payload.device_cmd == \"RESET\")\n{\n    msg.payload = [];\n    let secondOutputMsg = { payload: 1 };\n    return [msg, secondOutputMsg];\n}\n",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 480,
+        "wires": [
+            [
+                "78cb293fa9cfdbb4",
+                "db6143a17e36a3e8"
+            ],
+            [
+                "b826c4ce41b2e574"
+            ]
+        ]
+    },
+    {
+        "id": "644a7049f7086983",
+        "type": "http in",
+        "z": "164728d22bb9d6f8",
+        "name": "",
+        "url": "/Reset",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 250,
+        "y": 480,
+        "wires": [
+            [
+                "bbfce18c72ecebf3",
+                "38f18cdcfcce6740"
+            ]
+        ]
+    },
+    {
+        "id": "38f18cdcfcce6740",
+        "type": "http response",
+        "z": "164728d22bb9d6f8",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 260,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "3b933b8d910dfd28",
+        "type": "function",
+        "z": "164728d22bb9d6f8",
+        "name": "File Name",
+        "func": "// node.warn(\"Incoming Payload: \" + JSON.stringify(msg.payload));\nlet name = msg.payload;\nmsg.payload = name;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 680,
+        "wires": [
+            [
+                "81f0bdf349558c9e"
+            ]
+        ]
+    },
+    {
+        "id": "b826c4ce41b2e574",
+        "type": "fs-file-lister",
+        "z": "164728d22bb9d6f8",
+        "name": "",
+        "start": "/home/sahilkakadiya/Desktop/ECPS 216 - F'24 IOT/Assiginment -5 /Light Swarm  The Plot Thickens/my_logs/",
+        "pattern": "*.txt",
+        "folders": "",
+        "hidden": false,
+        "lstype": "files",
+        "path": true,
+        "single": true,
+        "depth": "0",
+        "stat": true,
+        "showWarnings": true,
+        "x": 700,
+        "y": 480,
+        "wires": [
+            [
+                "d690c973f1846b9b"
+            ]
+        ]
+    },
+    {
+        "id": "b04fe309fe1deb62",
+        "type": "inject",
+        "z": "164728d22bb9d6f8",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "v": "1",
+                "vt": "num"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 810,
+        "y": 380,
+        "wires": [
+            [
+                "b826c4ce41b2e574"
+            ]
+        ]
+    },
+    {
+        "id": "d9c5b288e27b9ccd",
+        "type": "ui_chart",
+        "z": "164728d22bb9d6f8",
+        "name": "",
+        "group": "8dcee5428904c9ce",
+        "order": 32,
+        "width": 15,
+        "height": 8,
+        "label": "Log's  file LDR Data",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "1024",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#ff0000",
+            "#00ff00",
+            "#0000ff",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1290,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e09b7d2ac391b8b8",
+        "type": "function",
+        "z": "164728d22bb9d6f8",
+        "name": "log node data",
+        "func": "\nlet resettMsg = { payload: [] };\nnode.send(resettMsg); // Send the payload\n\nlet index = 0\n// Set interval to run the loop every 1 second\nsetInterval(() => {\n    // for (let index = 0; index < msg.payload.length; index++) {\n        let newMsg = {\n            topic: msg.payload[index][\"master_device\"], // Set topic to Device ID\n            payload: msg.payload[index][\"ldr_value\"], // Set payload to LDR Value\n        };\n        \n        index++;\n        node.send(newMsg); // Send the payload\n    // }\n}, 1000); // 1000 milliseconds = 1 second\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1040,
+        "y": 720,
+        "wires": [
+            [
+                "d9c5b288e27b9ccd"
+            ]
+        ]
+    },
+    {
+        "id": "029de861f6ec49df",
+        "type": "function",
+        "z": "164728d22bb9d6f8",
+        "name": "Sperator Each Master Data",
+        "func": "let resettMsg = { payload: [] };\nnode.send(resettMsg); // Send the payload\n\nnode.send(msg); // Send the payload\n\n// Log incoming payload for debugging\n// node.warn(\"Incoming Payload: \" + JSON.stringify(msg.payload));\nfor (let index = 0; index < msg.payload.length; index++) \n{\n    let newMsg = {\n        topic: msg.payload[index][\"master_device\"], // Set topic to Device ID\n        payload: msg.payload[index][\"cumulative_time\"], // Set payload to Up Time\n            };\n    node.warn(\"newMsg: \" +newMsg);\n    node.send(newMsg); // Send the payload\n\n    \n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 600,
+        "wires": [
+            [
+                "4149186be76dfe2c"
+            ]
+        ]
+    },
+    {
+        "id": "c309f77ac73131b9",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 2,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "b727b2341558c093",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 4,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "abeafc64dbac0f2e",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 5,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "66a7c27a81cc344b",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 6,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "edcf6df8ece362d4",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 7,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "0f6c4a4c0e6d6f5b",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 8,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "43a093c7aa52085e",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 9,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "300811242e758e18",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 10,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "c4ad0c4b6a7123c5",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 11,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "432b5da7055906e6",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 12,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "d6e789c05cd12c8e",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 13,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "96ebe0ed6e1eb38b",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 14,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "617bb28b1e150610",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 15,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "c0396e7f44cd7a82",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 16,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "359f6bbe6609a52d",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 17,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "885eb4faf6d52b1b",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 18,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "dd3c7b9f83e4232d",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 19,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "b23dc4e004e11f2b",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 20,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "338ec870aa3d0a66",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 21,
+        "width": 29,
+        "height": 1
+    },
+    {
+        "id": "58ed2678384adfb4",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 22,
+        "width": 29,
+        "height": 1
+    },
+    {
+        "id": "4da11c35802da23d",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 23,
+        "width": 29,
+        "height": 1
+    },
+    {
+        "id": "cfc031797199a0ba",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 25,
+        "width": 29,
+        "height": 1
+    },
+    {
+        "id": "c725673832e14fb0",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 26,
+        "width": 29,
+        "height": 1
+    },
+    {
+        "id": "cb666296c5c867b2",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 27,
+        "width": 29,
+        "height": 1
+    },
+    {
+        "id": "3852b2105d834a33",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 29,
+        "width": 29,
+        "height": 1
+    },
+    {
+        "id": "e3dd01e27e928218",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 30,
+        "width": 29,
+        "height": 1
+    },
+    {
+        "id": "b5740242001d39ae",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 33,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "e09dc809084b797c",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 34,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "5192f00742c90828",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 35,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "db4cb0c0698c1fc3",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 36,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "6652ae331f8c17a8",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 37,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "44f9a6e86ed81975",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 38,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "ed7f78c99b982966",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 39,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "a012f4fad021bf91",
+        "type": "ui_spacer",
+        "z": "164728d22bb9d6f8",
+        "name": "spacer",
+        "group": "8dcee5428904c9ce",
+        "order": 40,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "8dcee5428904c9ce",
+        "type": "ui_group",
+        "name": "line chart",
+        "tab": "be3c64f907853481",
+        "order": 1,
+        "disp": true,
+        "width": 29,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "be3c64f907853481",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

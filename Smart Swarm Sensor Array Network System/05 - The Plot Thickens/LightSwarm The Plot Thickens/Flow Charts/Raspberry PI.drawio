@@ -1,0 +1,92 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="24.8.9">
+  <diagram name="Page-1" id="nN_TIKd90160Y7F5sHRM">
+    <mxGraphModel dx="9983" dy="2338" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ruaWkxpveNAStQtR9sSW-1" value="Start" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="-7030" y="-660.33" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ruaWkxpveNAStQtR9sSW-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ruaWkxpveNAStQtR9sSW-3" target="ruaWkxpveNAStQtR9sSW-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ruaWkxpveNAStQtR9sSW-3" value="&amp;nbsp;Process : Initialize Components:&lt;br&gt;WiFiManager, SocketManager,&lt;br&gt;LEDFlashingManager, Logger,&lt;br&gt;HandshakeManager, GraphUpdater" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="-6770" y="-700.33" width="200" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="ruaWkxpveNAStQtR9sSW-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.944;entryY=0.013;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="ruaWkxpveNAStQtR9sSW-6" target="ruaWkxpveNAStQtR9sSW-13">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-5640" y="-330.33000000000004" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-5575" y="-349.33000000000004" />
+              <mxPoint x="-5585" y="-349.33000000000004" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ruaWkxpveNAStQtR9sSW-5" value="YES" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="ruaWkxpveNAStQtR9sSW-4">
+          <mxGeometry x="-0.591" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ruaWkxpveNAStQtR9sSW-6" value="Current System Status?&lt;br&gt;and wait for the button pressed" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="-5690" y="-680.33" width="230" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="ruaWkxpveNAStQtR9sSW-7" value="IDLE: Wait for Action&lt;br&gt;&lt;div&gt;&lt;b&gt;Input&amp;nbsp;&lt;/b&gt;: UDP IP and port to set the broadcasts, leds pin configurations&amp;nbsp;&lt;br&gt;&lt;br&gt;&lt;b&gt;process&lt;/b&gt;: defines the configurations of every leds and resets all the leds, status , connects with the wifi&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;Initialize Socket, and&amp;nbsp; wait for the button pressed&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;output&lt;/b&gt;: you can see that the print statements that indicates that raspberry pi is online,&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;Initialize&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;socket and waiting for the button pressed&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="-6440" y="-730.33" width="590" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="ruaWkxpveNAStQtR9sSW-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ruaWkxpveNAStQtR9sSW-10" target="ruaWkxpveNAStQtR9sSW-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ruaWkxpveNAStQtR9sSW-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ruaWkxpveNAStQtR9sSW-10" target="ruaWkxpveNAStQtR9sSW-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ruaWkxpveNAStQtR9sSW-10" value="&lt;b&gt;Start Visualization&lt;br&gt;&lt;/b&gt;&lt;br&gt;&lt;b&gt;Input &lt;/b&gt;: the&amp;nbsp; log file name, parameters of the graph plot&lt;br&gt;&lt;br&gt;&lt;b&gt;process&lt;/b&gt;: create the log file, opens up the graph plot and start time of of updating the graph in every 1 sec&lt;br&gt;&lt;br&gt;&lt;b&gt;output&lt;/b&gt;: you can see that log file is created, graphs plot is opened and it changes it stat to to START which collects the LDR data&amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="-6870" y="-445.33000000000004" width="490" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="ruaWkxpveNAStQtR9sSW-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ruaWkxpveNAStQtR9sSW-12" target="ruaWkxpveNAStQtR9sSW-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ruaWkxpveNAStQtR9sSW-12" value="Start Data Collection&lt;br&gt;&lt;br&gt;&lt;b&gt;Input&amp;nbsp;&lt;/b&gt;: msg for the master ESP8266, a Variable to stores all the logs&amp;nbsp;&amp;nbsp;&lt;br&gt;&lt;br&gt;&lt;b&gt;process&lt;/b&gt;: get the data via UDP, process it , store in the logging variable which further use by the graph plotter LED Control: Adjust Blink Rate Based on LDR&amp;nbsp;&lt;br&gt;&amp;nbsp;if the button pressed it it goes into to stop state&lt;br&gt;&lt;br&gt;&lt;b&gt;output&lt;/b&gt;: you can see that graphs is updated by the data point given by the master&amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="-6855" y="-185.33000000000004" width="460" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="ruaWkxpveNAStQtR9sSW-13" value="&lt;b&gt;STOP: Terminate&lt;br&gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;process&lt;/b&gt;: it first sends the message to reset all the esps and save&amp;nbsp; all the data to the log file, resets all the leds and blinking process, resets all the logs variables to&amp;nbsp; defaults to use further and close the graphs&lt;br&gt;&lt;br&gt;&lt;b&gt;output&lt;/b&gt;: you can see that graphs is closed and all the logs is saved in the log file which is created at the time of&amp;nbsp;&lt;b&gt;Visualization&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="-6180" y="-177.83000000000004" width="630" height="237.5" as="geometry" />
+        </mxCell>
+        <mxCell id="ruaWkxpveNAStQtR9sSW-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ruaWkxpveNAStQtR9sSW-15" target="ruaWkxpveNAStQtR9sSW-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ruaWkxpveNAStQtR9sSW-15" value="&lt;b&gt;Send Handshake Signals&lt;br&gt;input&lt;/b&gt;: msg to be sent via UDP to all esp8266, time interval&amp;nbsp; at which this function should call multiple time to send the online event&lt;br&gt;&lt;br&gt;&lt;b&gt;Process&lt;/b&gt;:&amp;nbsp; &amp;nbsp;sends the msg to all esp8266 that ir is now online, start the timer for periodic sends&amp;nbsp;&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="-6250" y="-460.33000000000004" width="440" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="ruaWkxpveNAStQtR9sSW-16" value="&lt;b&gt;run_graph_update&lt;/b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;b&gt;Input&amp;nbsp;&lt;/b&gt;: master data log&lt;br&gt;&lt;br&gt;&lt;b&gt;process&lt;/b&gt;: it gets the master data log, compute over it and creates its own log data which&amp;nbsp; then it is used to plot the data points&amp;nbsp;&lt;br&gt;&lt;br&gt;&lt;b&gt;output&lt;/b&gt;: you can see that graphs is updated by the data point given by the master&amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="-6310" y="229.66999999999996" width="630" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="ruaWkxpveNAStQtR9sSW-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ruaWkxpveNAStQtR9sSW-1" target="ruaWkxpveNAStQtR9sSW-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ruaWkxpveNAStQtR9sSW-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.052;entryY=0.431;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="ruaWkxpveNAStQtR9sSW-7" target="ruaWkxpveNAStQtR9sSW-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ruaWkxpveNAStQtR9sSW-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ruaWkxpveNAStQtR9sSW-6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-5890" y="-730.33" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-5575" y="-810.33" />
+              <mxPoint x="-5890" y="-810.33" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ruaWkxpveNAStQtR9sSW-20" value="NO" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="ruaWkxpveNAStQtR9sSW-19">
+          <mxGeometry x="-0.1346" y="1" relative="1" as="geometry">
+            <mxPoint x="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ruaWkxpveNAStQtR9sSW-21" value="A timer created for the plotting the graphs at every 1 sec in&amp;nbsp;&lt;b&gt;Start Visualization&lt;br&gt;&lt;/b&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-6350" y="109.66999999999996" width="660" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="ruaWkxpveNAStQtR9sSW-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.909;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="ruaWkxpveNAStQtR9sSW-13" target="ruaWkxpveNAStQtR9sSW-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
